@@ -1,0 +1,184 @@
+/* RVARC Field Day 2026 — Shared Stylesheet */
+
+:root {
+  --navy:  #1A2635;
+  --amber: #E8901A;
+  --body:  #374151;
+  --muted: #6B7280;
+  --card:  #EEF3F8;
+  --border:#D1DCE8;
+  --hint-bg: #FEF3E2;
+  --hint-bd: #F5CBA7;
+  --hint-tx: #8B5E04;
+  --white: #FFFFFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--body);
+  background: #F8FAFC;
+}
+
+nav {
+  background: var(--navy);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+.nav-brand {
+  color: var(--white);
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.9rem 1rem 0.9rem 0;
+  margin-right: 0.5rem;
+  border-right: 2px solid rgba(255,255,255,0.15);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.nav-brand span { color: var(--amber); }
+nav a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.9rem 0.7rem;
+  display: block;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+nav a:hover, nav a.active { color: var(--amber); }
+
+.page-header {
+  background: var(--navy);
+  color: var(--white);
+  padding: 2.5rem 1rem 2rem;
+}
+.page-header-inner { max-width: 1000px; margin: 0 auto; }
+.page-header h1 {
+  font-family: Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+.page-header .subtitle { color: var(--amber); font-style: italic; font-size: 1rem; }
+
+main { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+
+h2 {
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--navy);
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 3px solid var(--amber);
+}
+h3 { font-size: 1.05rem; font-weight: bold; color: var(--navy); margin: 1.5rem 0 0.5rem; }
+p { margin-bottom: 0.9rem; }
+
+.hint {
+  background: var(--hint-bg);
+  border: 1px solid var(--hint-bd);
+  border-left: 4px solid var(--amber);
+  color: var(--hint-tx);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--amber);
+  border-radius: 6px;
+  padding: 1.25rem 1.1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s, transform 0.15s;
+  display: block;
+}
+.card:hover { box-shadow: 0 4px 16px rgba(26,38,53,0.12); transform: translateY(-2px); }
+.card-label {
+  font-size: 0.72rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+  margin-bottom: 0.4rem;
+}
+.card h3 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--navy); }
+.card p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+
+.checklist { list-style: none; margin: 0.5rem 0 1rem; padding: 0; }
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.35rem 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--border);
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before { content: "□"; font-size: 1rem; color: var(--amber); flex-shrink: 0; margin-top: 0.05rem; }
+.checklist .note { font-size: 0.82rem; color: var(--muted); font-style: italic; margin-left: 0.25rem; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
+@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+.styled-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 1rem 0; }
+.styled-table th { background: var(--navy); color: var(--white); padding: 0.6rem 0.75rem; text-align: left; }
+.styled-table td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.styled-table tr:nth-child(even) td { background: var(--card); }
+
+.badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 3px; font-size: 0.78rem; font-weight: bold; color: var(--white); }
+.badge-tech    { background: #2563EB; }
+.badge-general { background: #16A34A; }
+.badge-extra   { background: var(--amber); }
+
+.download-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+.download-bar span { font-size: 0.875rem; color: var(--muted); flex: 1; }
+.btn { display: inline-block; padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold; text-decoration: none; transition: background 0.15s; }
+.btn-primary { background: var(--amber); color: var(--white); }
+.btn-primary:hover { background: #c97a14; }
+.btn-outline { background: transparent; color: var(--navy); border: 1px solid var(--border); }
+.btn-outline:hover { background: var(--border); }
+
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.8rem;
+  margin-top: 3rem;
+}
+footer a { color: var(--amber); text-decoration: none; }

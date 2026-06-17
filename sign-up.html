@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visitor Sign-Up — RVARC Field Day 2026</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .signup-form { max-width: 560px; margin: 1.5rem 0; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-weight: bold; font-size: 0.9rem; color: var(--navy); margin-bottom: 0.3rem; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: var(--white);
+      transition: border-color 0.15s;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(232,144,26,0.15);
+    }
+    .form-note { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+    .submit-btn {
+      background: var(--amber);
+      color: var(--white);
+      border: none;
+      padding: 0.6rem 1.75rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.15s;
+    }
+    .submit-btn:hover { background: #c97a14; }
+    #thanks { display:none; background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; padding: 1rem 1.25rem; border-radius: 6px; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">RVARC <span>Field Day 2026</span></a>
+    <a href="index.html">Home</a>
+    <a href="table-plan.html">Table Plan</a>
+    <a href="about-rvarc.html">About RVARC</a>
+    <a href="get-licensed.html">Get Licensed</a>
+    <a href="sign-up.html" class="active">Sign Up</a>
+    <a href="downloads.html">Downloads</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1>Visitor Sign-Up</h1>
+    <p class="subtitle">Stay in the loop on club events and license exam sessions</p>
+  </div>
+</div>
+
+<main>
+  <p>Enjoyed your visit to RVARC Field Day? Leave your name and contact info and we'll keep you informed about upcoming club meetings, license exam sessions, and events. No spam, ever — just occasional news about RVARC and amateur radio.</p>
+
+  <div class="hint">
+    <strong>At the event?</strong> You can also sign the paper sheet at the Public Information Table — whichever is easier.
+  </div>
+
+  <h2>Sign Up</h2>
+
+  <form class="signup-form" id="signupForm">
+    <div class="form-group">
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" name="name" required placeholder="Jane Smith">
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" name="email" required placeholder="jane@example.com">
+      <p class="form-note">We'll use this to send you occasional club news. Unsubscribe any time.</p>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone (optional)</label>
+      <input type="tel" id="phone" name="phone" placeholder="(540) 555-0100">
+    </div>
+    <div class="form-group">
+      <label for="licensed">Are you a licensed amateur radio operator?</label>
+      <select id="licensed" name="licensed">
+        <option value="">-- Select --</option>
+        <option value="no">No — I'm new to ham radio</option>
+        <option value="tech">Yes — Technician</option>
+        <option value="general">Yes — General</option>
+        <option value="extra">Yes — Amateur Extra</option>
+        <option value="lapsed">I used to be, but my license lapsed</option>
+      </select>
+    </div>
+    <button type="submit" class="submit-btn">Send My Info →</button>
+    <p class="form-note" style="margin-top:0.75rem;">
+      This form sends an email to the club using your default mail app. If you prefer, fill out the paper sign-up sheet at the Public Information Table.
+    </p>
+  </form>
+
+  <div id="thanks">
+    <strong>Thanks for signing up!</strong> We'll be in touch with upcoming club news and events. 73 de RVARC.
+  </div>
+
+  <h2>Prefer a Printable Sheet?</h2>
+  <p>Download and print the visitor sign-up sheet to bring to the event:</p>
+  <div class="download-bar">
+    <span>Visitor Sign-Up Sheet (20-row printable table)</span>
+    <a class="btn btn-primary" href="downloads/4_Visitor_Sign_Up_Sheet.pdf">PDF</a>
+    <a class="btn btn-outline" href="downloads/4_Visitor_Sign_Up_Sheet.docx">Word (.docx)</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Rappahannock Valley Amateur Radio Club &nbsp;·&nbsp; <a href="https://rvarc.club">rvarc.club</a> &nbsp;·&nbsp; Field Day 2026</p>
+</footer>
+
+<script>
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name    = document.getElementById('name').value;
+  const email   = document.getElementById('email').value;
+  const phone   = document.getElementById('phone').value;
+  const lic     = document.getElementById('licensed').value;
+  const body    = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Phone: ' + (phone || 'not provided') + '\n' +
+    'Licensed: ' + (lic || 'not specified') + '\n\n' +
+    'Submitted via rvarc Field Day sign-up form.'
+  );
+  window.location.href = 'mailto:info@rvarc.club?subject=' +
+    encodeURIComponent('Field Day 2026 Sign-Up: ' + name) + '&body=' + body;
+  document.getElementById('thanks').style.display = 'block';
+});
+</script>
+
+</body>
+</html>
