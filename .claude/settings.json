@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "WebFetch(domain:www.easywayhambooks.com)"
+    ]
+  }
+}
